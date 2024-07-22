@@ -1,0 +1,93 @@
+<div class="container">
+<div class="item item-1">
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <img class="logo" src="assets/logo.png">
+        </button>
+        <span>&nbsp;&nbsp;</span>
+        <span>Happy Recognition</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="right-content" aria-label="Example icon-button with heart icon">
+          <mat-icon>person</mat-icon>
+        </button>
+        <button mat-icon-button class="right-content" aria-label="Example icon-button with share icon" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+</div>
+<br>
+<div class="outerContainer">
+<div fxLayout="row" fxLayoutGap="10px" fxLayout.sm="column" class="container">
+    <div>
+    <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Submit Your Recognition Here</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="recognitionForm">
+                <div fxLayout="row" fxLayout.sm="column">
+            <mat-form-field class="row-width">
+                <input
+                type="text"
+                matInput
+                placeholder="Username"
+                formControlName="username"
+                required
+              />
+              </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayout.sm="column" class="badge-title">Select Badge</div>
+                <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="5px">
+                        <button mat-raised-button><img class="button-img" src="/assets/people-first.png">People-first</button>
+                        <button mat-raised-button> <img class="button-img" src="/assets/bold.png">Bold</button>
+                        <button mat-raised-button><img class="button-img" src="/assets/inclusive.png">Inclusive</button>
+                        <button mat-raised-button><img class="button-img" src="/assets/sustainable.png">Sustainable</button>
+                        <button mat-raised-button><img class="button-img" src="/assets/trust.png">Trust</button>
+                </div>
+                <div fxLayout="row" fxLayout.sm="column">
+
+                    <mat-form-field class="example-full-width row-width badge-title">
+                        <textarea matInput placeholder="Comment here..."></textarea>
+                      </mat-form-field>
+                </div>
+           </form>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="end">
+            <button mat-raised-button class="primary">Submit</button>
+            <button mat-raised-button class="primary">Reset</button>
+        </mat-card-actions>
+      </mat-card>
+</div>
+<div >
+    <mat-card class="example-card2">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>My Earned Rewards</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front" fxLayoutAlign="center">
+                    <img src="assets/bold.png" alt="Avatar" style="width:50%;height:50%;">
+                  </div>
+                  <div class="flip-card-back">
+                    <p>Recognised By : Anusha</p> 
+                    <p>Comment : Recognised</p> 
+                    <p>Date : 22/07/2024</p>
+                    <p>Category : Bold</p>
+                  </div>
+                </div>
+              </div>
+        </mat-card-content>
+      </mat-card>
+
+     
+
+
+</div>
+</div>
+</div>
+
+
