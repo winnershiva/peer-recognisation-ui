@@ -14,3 +14,4 @@ EXPOSE 4200
 # Command to run the Angular application
 CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check"]
 
+#test commit
