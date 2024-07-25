@@ -1,0 +1,77 @@
+
+    <div class="outerContainer" fxLayoutAlign="center">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.sm="column" class="container" fxLayoutAlign="center">
+          <mat-card class="recognition-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Submit Your Recognition Here</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="recognitionForm">
+                    <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="25px">
+                        <div fxLayout="column" fxLayout.sm="row" class="set-content">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>User Name</mat-label>
+                                <input matInput
+                                       aria-label="Select User"
+                                       [matAutocomplete]="auto"
+                                       [formControl]="user"
+                                       formControlName="username"
+                                       (input)="getUsernames()">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user.name">
+                                    <img class="example-option-img" aria-hidden height="25">
+                                    <span>{{user.name}}</span> |
+                                    <small>EmpId: {{user.empId}}</small>
+                                  </mat-option>
+                                </mat-autocomplete>
+                              </mat-form-field>
+                  </div>
+                  <div fxLayout="column" fxLayout.sm="row" class="set-content">
+                    <mat-form-field class="row-width">
+                        <input
+                        type="number"
+                        matInput
+                        placeholder="points"
+                        formControlName="points"
+                        required
+                      />
+                      </mat-form-field>
+                  </div>
+                    </div>
+                    <div fxLayout="row" fxLayout.sm="column" class="badge-title set-content">Select Badge</div>
+                    <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="5px" class="set-content">
+                            <div fxLayout="row">
+                                <button mat-raised-button (click)="getBadgeName('people')"><img class="button-img" src="/assets/people-first.png"></button>
+                            </div>
+                            <div><button mat-raised-button (click)="getBadgeName('bold')"> <img class="button-img" src="/assets/bold.png"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('inclusive')"><img class="button-img" src="/assets/inclusive.png"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('innovative')"><img class="button-img" src="/assets/innovative.jpeg"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('trust')"><img class="button-img" src="/assets/trust.png"></button></div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center">
+                        <div class="button-text"><p>People-first</p></div>
+                        <div class="button-text"><p>Bold</p></div>
+                        <div class="button-text"><p>Inclusive</p></div>
+                        <div class="button-text"><p>Innovative</p></div>
+                        <div class="button-text"><p>Trust</p></div>
+                    </div>
+                    <div fxLayout="row" fxLayout.sm="column">
+    
+                        <mat-form-field class="example-full-width row-width badge-title">
+                            <textarea matInput placeholder="Comment here..." formControlName="comments"></textarea>
+                          </mat-form-field>
+                    </div>
+               </form>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="end" class="set-content-actions">
+                <button mat-raised-button class="primary" (click)="SubmitRecognition()">Submit</button>
+                <button mat-raised-button class="primary" (click)="resetForm()">Reset</button>
+            </mat-card-actions>
+          </mat-card>
+    
+    </div>
+    </div>
+    
+    
+    

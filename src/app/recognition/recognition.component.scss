@@ -1,0 +1,104 @@
+// .recognitionpage {
+//     display: grid;
+//     min-height: 100vh; /* Ensure full viewport height */
+//     align-items: center;
+//     justify-items: center;
+//     background-color: white;
+// }
+
+.outerContainer {
+   
+//    background-image: url("/assets/background.jpg");
+}
+
+.right-content {
+    flex: right;
+}
+
+.recognition-card {
+    width: auto;
+    max-width: fit-content;
+    margin:50px;
+    /* Additional styling */
+    border: 3px solid green;
+    padding: 20px;
+    
+   
+  }
+
+  .example-header-image {
+    background-image: url('/assets/logo.png');
+    background-size: cover;
+  }
+
+  .button-img {
+    width : 100px;
+    height : 100px;
+
+  }
+
+  .button-text {
+    width : 100px;
+  }
+
+ .row-width {
+    width: -webkit-fill-available;
+ }
+
+ .badge-title {
+    margin :10px;
+ }
+
+ .primary {
+    background-color: green;
+    color: white;
+    
+ }
+
+
+::ng-deep .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    right: -11px;
+    width: auto !important;
+}
+
+.earned-badge {
+    width: 75px;
+    height: auto;
+}
+
+.badge-content {
+    height: auto;
+    width: full;
+    border: 1px solid black;
+}
+
+.badge-title {
+    top : 45px;
+}
+
+.earned-card-content {
+    margin-top : 25px !important;
+}
+
+.divider {
+    margin-bottom: 10px;
+}
+
+.profile-card {
+
+ margin-bottom: 30px;
+
+}
+
+.set-content {
+    margin: 10px;
+}
+
+.set-content-actions {
+    margin-top: 25px;
+}
+
+
+
+ 
+ 

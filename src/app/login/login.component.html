@@ -1,0 +1,50 @@
+<html>
+
+<div class="loginpage">
+
+<mat-card class="loginCard">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="loginForm">
+        <div>
+          <!-- <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> -->
+           <mat-icon mat-list-icon>mail_outline</mat-icon>
+
+            <mat-form-field>
+              <input
+              type="text"
+              matInput
+              placeholder="Username"
+              formControlName="username"
+              required
+            />
+            </mat-form-field>
+            <div *ngIf="submitted">
+              <div *ngIf="f.username.errors?.required" class="errorMsg">Username is required</div>
+              </div>
+            </div>
+           
+            <div>
+              <mat-icon mat-list-icon>key</mat-icon>
+            <mat-form-field>
+              <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+              required
+            />
+            </mat-form-field>
+            <div *ngIf="submitted">
+              <div *ngIf="f.password.errors?.required" class="errorMsg">Password is required</div>
+              </div>
+          </div>
+            <div fxLayoutAlign="end">
+        <button  fxLayoutAlign="end" mat-raised-button class="primary" (click)="login()">Login</button>
+      </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  </div>
+
+  </html>

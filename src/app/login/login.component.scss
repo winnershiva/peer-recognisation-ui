@@ -1,0 +1,31 @@
+.loginpage {
+        display: grid;
+        min-height: 100vh; /* Ensure full viewport height */
+        align-items: center;
+        justify-items: center;
+        background-color: green;
+      }
+
+      .mat-form-field {
+        min-width: 300px;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    
+      mat-card-title,
+      mat-card-content {
+        display: flex;
+        justify-content: center;
+      }
+    
+      mat-icon {
+        float: left;
+        opacity: 0.5;
+        margin-top: 14px;
+      }
+
+      .primary {
+        background-color: green;
+        color: white;
+      }
+

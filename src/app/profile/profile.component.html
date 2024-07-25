@@ -1,0 +1,195 @@
+
+<div class="profile-page">
+  <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="20px">
+
+    <div fxLayout="column">
+      <mat-card class="example-card profile-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title class="profile-title"></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form>
+            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+              <div fxLayout="column" fxLayout.sm="row">
+                <img class="profile-img" src="/assets/employee-profile.png">
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+              <div fxLayout="column" fxLayout.sm="row">
+                <h3>Paluri Lakshmi Satya Bhavani (7816250)</h3>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+              <div fxLayout="column" fxLayout.sm="row">
+                <span>Senior Software Engineer</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
+              <div fxLayout="column" fxLayout.sm="row">
+                <h3><a class="email">Satya23.paluri@gmail.com</a></h3>
+              </div>
+            </div>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxLayout="column">
+      <mat-card class="rewards-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>My Earned Rewards</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="earned-card-content">
+          <div class="accordian" *ngIf="peoplefirstBadge.length > 0">
+            <mat-accordion class="example-headers-align earned-card-content" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span fxLayoutAlign="start">&nbsp; <img class="badge-title" src="assets/people-first.png"></span>
+                    <span fxLayoutAlign="end" class="title-text">People First</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Anusha
+                  </p>
+                  <mat-divider class="divider"></mat-divider>
+                  <p>&nbsp;</p>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Bharathwaj
+                  </p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <div class="accordian" *ngIf="boldBadge.length > 0">
+            <mat-accordion class="example-headers-align earned-card-content" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span fxLayoutAlign="start">&nbsp; <img class="badge-title" src="assets/bold.png"></span>
+                    <span fxLayoutAlign="end" class="title-text">Bold</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let data of boldBadge">
+                  <p>
+                    {{data.comment}}
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by {{data.giverId}}
+                  </p>
+                  <mat-divider class="divider"></mat-divider>
+                  <p>&nbsp;</p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <div class="accordian" *ngIf="inclusiveBadge.length > 0">
+            <mat-accordion class="example-headers-align earned-card-content" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span fxLayoutAlign="start">&nbsp; <img class="badge-title" src="assets/inclusive.png"></span>
+                    <span fxLayoutAlign="end" class="title-text">Inclusive</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Anusha
+                  </p>
+                  <mat-divider class="divider"></mat-divider>
+                  <p>&nbsp;</p>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Bharathwaj
+                  </p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <div class="accordian" *ngIf="sustainableBadge.length > 0">
+            <mat-accordion class="example-headers-align earned-card-content" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span fxLayoutAlign="start">&nbsp; <img class="badge-title" src="assets/innovative.jpeg"></span>
+                    <span fxLayoutAlign="end" class="title-text">Innovative</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Anusha
+                  </p>
+                  <mat-divider class="divider"></mat-divider>
+                  <p>&nbsp;</p>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Bharathwaj
+                  </p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <div class="accordian" *ngIf="trustBadge.length > 0">
+            <mat-accordion class="example-headers-align earned-card-content" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span fxLayoutAlign="start">&nbsp; <img class="badge-title" src="assets/trust.png"></span>
+                    <span fxLayoutAlign="end" class="title-text">Trust</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Anusha
+                  </p>
+                  <mat-divider class="divider"></mat-divider>
+                  <p>&nbsp;</p>
+                  <p>
+                    comments here....
+                  </p>
+                  <p fxLayoutAlign="end">
+                    -by Bharathwaj
+                  </p>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

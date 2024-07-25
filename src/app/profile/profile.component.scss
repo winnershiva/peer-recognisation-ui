@@ -1,0 +1,64 @@
+
+
+.profile-page {
+  margin : 20px;
+}
+
+.profile-card {
+
+  height: 80vh;
+  width : 430px;
+  max-width : 430px;
+  border : 1px solid green;
+
+}
+
+.rewards-card {
+  height: 80vh;
+  width: 650px;
+  max-width: 650px;
+  border : 1px solid green;
+}
+
+.profile-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 30vw; /* Specify a width for text overflow ellipsis */
+}
+
+.profile-img {
+  background: green;
+  padding: 3px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+  }
+}
+
+.email {
+  text-decoration: underline;
+  color: rgb(15, 125, 199);
+}
+
+.badge-title {
+  width : 75px;
+  height: 75px;
+}
+
+.title-text {
+  margin-top : 25px;
+}
+
+::ng-deep .mat-expansion-panel-header {
+    height: 75px;
+}
+
+.accordian {
+  margin: 20px;
+  border : 1px solid black;
+}
