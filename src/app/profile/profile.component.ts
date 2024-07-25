@@ -8,9 +8,14 @@ import { ProfileService } from './profile.service';
 
 
 export interface UserName {
-  name: string;
-  empId: string;
-  emailId: string;
+ 
+
+  employeeId: number,
+        employeeName: string,
+        designation: string,
+        email: string,
+        earned: number,
+        points: number
 }
 
 @Component({
@@ -21,16 +26,18 @@ export interface UserName {
 export class ProfileComponent implements OnInit {
   name: any;
 
-  constructor(private globals: Globals, private profileService: ProfileService) {}
+  constructor(private globals: Globals, private profileService: ProfileService, private route : Router) {}
 
-  myRewards: { employeeId: number; employeeName: string; email: string; badgesReceived: { giverId: number; receiverId: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[]; };
-  inclusiveBadge: { giverId: number; receiverId: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
-  boldBadge: { giverId: number; receiverId: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
-  trustBadge: { giverId: number; receiverId: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
-  sustainableBadge: { giverId: number; receiverId: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
-  peoplefirstBadge: { giverId: number; receiverId: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
+  myRewards: { employeeId: number; employeeName: string; email: string; badgesReceived: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[]; };
+  inclusiveBadge: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
+  boldBadge: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
+  trustBadge: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
+  innovativeBadge: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
+  peoplefirstBadge: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[];
 
   ngOnInit(): void {
+
+    this.getProfile();
 
     this.globals.setLogin(true);
 
@@ -40,8 +47,8 @@ export class ProfileComponent implements OnInit {
       "email": "anushakorra@gmail.com",
       "badgesReceived": [
           {
-              "giverId": 3,
-              "receiverId": 2,
+              "giverName": 3,
+              "receiver": 2,
               "badgeName": null,
               "comment": "Your unwavering commitment to fostering a welcoming and supportive environment for everyone is truly commendable",
               "badges": {
@@ -50,8 +57,8 @@ export class ProfileComponent implements OnInit {
               }
           },
           {
-              "giverId": 1,
-              "receiverId": 2,
+              "giverName": 1,
+              "receiver": 2,
               "badgeName": null,
               "comment": "Your unwavering commitment to fostering a welcoming and supportive environment for everyone is truly commendable",
               "badges": {
@@ -60,8 +67,8 @@ export class ProfileComponent implements OnInit {
               }
           },
           {
-              "giverId": 5,
-              "receiverId": 2,
+              "giverName": 5,
+              "receiver": 2,
               "badgeName": null,
               "comment": "Your unwavering commitment to fostering a welcoming and supportive environment for everyone is truly commendable",
               "badges": {
@@ -80,12 +87,12 @@ export class ProfileComponent implements OnInit {
  
   getMyBadges() {
 
-    this.profileService.getEarnedBadges(this.name).subscribe(res => {
+    // this.profileService.getEarnedBadges(this.name).subscribe(res => {
 
 
-      console.log("badgesres", res)
+    //   console.log("badgesres", res)
 
-    })
+    // })
 
     var badgeObj = [{}];
     
@@ -93,11 +100,30 @@ export class ProfileComponent implements OnInit {
      this.inclusiveBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Inclusive');
      this.boldBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Bold');
      this.trustBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Trust');
-     this.sustainableBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Sustainable');
+     this.innovativeBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Innovative');
      this.peoplefirstBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'PeopleFirst');
     
      console.log("boldBadge", this.boldBadge);
      
+    this.globals.setglobalSpinner(false);
+     
+  }
+
+  getProfile() {
+    let name;
+    this.profileService.getProfileDetails(name).subscribe(res => {
+
+      console.log("profile info",res);
+      
+    this.globals.setglobalSpinner(false);
+    })
+
+    this.globals.setglobalSpinner(false);
+  }
+
+  gotoRedeem() {
+
+    this.route.navigate(['/redeem']);
   }
    
 

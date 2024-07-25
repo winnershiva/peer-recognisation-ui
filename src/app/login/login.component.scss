@@ -6,6 +6,8 @@
         background-color: green;
       }
 
+
+
       .mat-form-field {
         min-width: 300px;
         margin-right: 10px;
@@ -28,4 +30,19 @@
         background-color: green;
         color: white;
       }
+
+      /* Mobile CSS */
+@media only screen and (max-width: 768px) {
+ 
+
+  .loginpage {
+  /* Ensure full viewport height */
+    background-color: green;
+    text-align: center;
+    clear: both;
+    width: max-content;
+    height: 153vh;
+  }
+}
+
 

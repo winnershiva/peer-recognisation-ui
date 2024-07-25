@@ -9,18 +9,28 @@ import { environment } from 'src/environments/environment.prod';
 export class RecognitionService {
 
   public headers: any;
-  myStorageData = (localStorage.getItem('jwt'));
+  // myStorageData = JSON.parse(localStorage.getItem('jwt') || '{}');
+
+  myStorageData = JSON.parse(localStorage.getItem('jwt') || '{}');
 
   constructor(private http : HttpClient) {
+    console.log("local data", this.myStorageData.jwt);
+    
     this.headers = {
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Bearer ' + this.myStorageData
+      'Authorization': 'Bearer ' + this.myStorageData.jwt
     };
   } 
 
   public searchPerson(name: any):Observable<any> {
+
     const httpOptions = { headers: new HttpHeaders(this.headers) };
-    return this.http.get(environment.recognitionUrl + "search/employee/" + name);
+    return this.http.get(environment.recognitionUrl + "search/employee/" + name, httpOptions);
+  }
+
+  public submitRecognition(payload:any,giverId: any, receiverId: any):Observable<any> {
+    const httpOptions = { headers: new HttpHeaders(this.headers) };
+    return this.http.post("http://localhost:9096/api/recognize/" + giverId + '/' + receiverId, payload, httpOptions)
   }
 }

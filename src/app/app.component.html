@@ -1,15 +1,15 @@
-<div *ngIf="spinnerLoader"  class="loading">Loading&#8230;</div>
+<!-- <div *ngIf="spinnerLoader"  class="loading">Loading&#8230;</div> -->
 
 <div class="container" *ngIf="loggedinValue">
   <div class="item item-1">
-      <mat-toolbar color="primary">
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-toolbar color="primary" class="toolbar-m">
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="gotoDashboard()">
             <img class="logo" src="assets/lloyds-logo.jpg">
           </button>
           <span class="space">&nbsp;&nbsp;</span>
           <span>STAR EMPLOYEE</span>
           <span class="example-spacer"></span>
-          <mat-icon  matBadge="20000"> shopping_cart</mat-icon>
+          <mat-icon  matBadge="20000" matBadgePosition="before" matBadgeColor="accent"> shopping_cart</mat-icon>
           <button mat-icon-button class="right-content" aria-label="Example icon-button with heart icon" matTooltip="profile" (click)="goToProfile()">
             <mat-icon>person</mat-icon>
           </button>

@@ -15,7 +15,28 @@
     max-width: 80px;
 }
 
-.points {
-    color: white;
-    border: 1px solid white;
+
+::ng-deep .mat-badge-medium.mat-badge-overlap.mat-badge-before .mat-badge-content {
+    left : -35px;
+    width:auto;
+}
+
+::ng-deep .mat-badge-accent .mat-badge-content {
+    background: #890606; 
+    color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .logo {
+        width: 100px;
+        height:50px;
+    }
+
+    .toolbar-m {
+
+        width :max-content;
+
+    }
+
 }

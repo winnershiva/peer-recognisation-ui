@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -22,6 +22,9 @@ export class RecognitionComponent implements OnInit {
 
   user = new FormControl;
   badge: any;
+  usershowError: boolean;
+  userMessage: any;
+  myStorageData = JSON.parse(localStorage.getItem('jwt') || '{}');
 
   constructor(private router : Router, private fb : FormBuilder, private _snackBar: MatSnackBar, private recognitionService : RecognitionService,
     private globals : Globals
@@ -42,19 +45,24 @@ private getuser() {
 private _filterUsers(value: string): UserName[] {
   const filterValue = value.toLowerCase();
 
-  return this.usernames.filter(emp => emp.name.toLowerCase().indexOf(filterValue) === 0);
+  return this.usernames.filter(emp => emp.employeeName.toLowerCase().indexOf(filterValue) === 0);
 }
 
   ngOnInit(): void {
 
     this.globals.setLogin(true);
 
+    // this.getUsernames();
+
     this.recognitionForm = this.fb.group({
-      'username' : new FormControl(''),
-      'points' : new FormControl(''),
-      'comments' : new FormControl(''),
+      'username' : new FormControl('', Validators.required),
+      'points' : new FormControl('', Validators.required),
+      'comments' : new FormControl('', Validators.required),
 
     })
+
+    this.recognitionForm.get('points')?.patchValue(100);
+    this.recognitionForm.get('points')?.disable();
   }
 
 
@@ -78,12 +86,20 @@ private _filterUsers(value: string): UserName[] {
 
   async getUsernames() {
 
-
-    if (this.recognitionForm.get('username')?.value.length > 3) {
+    if (this.recognitionForm.get('username')?.value.length > 0) {
 
       this.recognitionService.searchPerson(this.recognitionForm.get('username')?.value).subscribe(res => {
 
-        this.usernames = res;
+        if(res != "" && res.message ) {
+          this.usernames = res;
+          this.usershowError = false;
+          this.userMessage = "";
+        } else if(res.success == false){
+          this.usershowError = true;
+          this.userMessage = res.message;
+        }
+
+        
          
         // this.usernames = [
         //   {
@@ -112,13 +128,13 @@ private _filterUsers(value: string): UserName[] {
         //     emailId: 'satya.p@gmail.com'
         //   }
         // ];
-
+        this.filteredUsers = this.getuser();
         console.log("res", res);
         
       });
     }
 
-    this.filteredUsers = this.getuser();
+    // this.filteredUsers = this.getuser();
     this.globals.setglobalSpinner(false);
 
 
@@ -126,10 +142,26 @@ private _filterUsers(value: string): UserName[] {
 
   async SubmitRecognition() {
 
-    this.openSnackBar("Recognition Submitted Successfully.! 👏", "Ok")
+    let payload = {
+      "badgeName" : this.badge,
+      "comment" : this.recognitionForm.get('comments')?.value,
+    }
+
+    let giverId =  this.myStorageData.employeeId;
+    let receiverId = 101;
+
+    this.recognitionService.submitRecognition(payload, giverId, receiverId).subscribe(res => {
+
+      if(res != null) {
+        this.openSnackBar("Recognition Submitted Successfully.! 👏", "Ok");
+      }
+
+    })
+
+    
   }
 
-  async resetForm() {
+    async resetForm() {
     this.recognitionForm.reset();
   }
 }

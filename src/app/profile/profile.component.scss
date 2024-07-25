@@ -15,9 +15,13 @@
 
 .rewards-card {
   height: 80vh;
+  max-height: 80vh;
   width: 650px;
   max-width: 650px;
   border : 1px solid green;
+  overflow: scroll;
+  scrollbar-color: green black;
+  scrollbar-width: thin;
 }
 
 .profile-title {
@@ -61,4 +65,13 @@
 .accordian {
   margin: 20px;
   border : 1px solid black;
+}
+
+.space {
+  width: 100px;
+}
+
+.points-earned {
+  color: green;
+  text-decoration: underline;
 }

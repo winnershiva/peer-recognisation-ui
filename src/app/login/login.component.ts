@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   async login() {
 
     this.submitted = true;
-    alert("Logged in..");
 
     if (this.loginForm.invalid) {
       return;
@@ -43,15 +42,21 @@ export class LoginComponent implements OnInit {
     }
 
     console.log("payload", payload);
-    
-
     this.loginService.loginIntoRecognition(payload).subscribe(data => {
 
       console.log("login", data);
-     
+
+      localStorage.setItem('jwt',JSON.stringify(data));
+
+      this.globals.setLogin(true);
+      this.router.navigate(['/recognition']);
     })
-    this.globals.setLogin(true);
-    this.router.navigate(['/recognition']);
+
+    
   }
 
 }
+function typeOf(data: any): any {
+  throw new Error('Function not implemented.');
+}
+

@@ -29,6 +29,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { Globals } from './common/globals';
 import { ErrorIntercept } from './common/error.interceptor';
 import { Interceptor } from './common/loader.interceptor';
+import { RedeemComponent } from './redeem/redeem.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { Interceptor } from './common/loader.interceptor';
     LoginComponent,
     ProfileComponent,
     RecognitionComponent,
+    RedeemComponent,
   ],
   imports: [
     BrowserModule,

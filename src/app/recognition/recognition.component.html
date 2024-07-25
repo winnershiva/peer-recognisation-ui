@@ -3,29 +3,29 @@
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.sm="column" class="container" fxLayoutAlign="center">
           <mat-card class="recognition-card">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Submit Your Recognition Here</mat-card-title>
+                
+              <mat-card-title class="title"><img class="book-img" src="/assets/book.jpg"> SUBMIT YOUR RECOGNITION HERE</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <form [formGroup]="recognitionForm">
+                <form [formGroup]="recognitionForm" *ngIf="recognitionForm">
                     <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="25px">
                         <div fxLayout="column" fxLayout.sm="row" class="set-content">
                             <mat-form-field class="example-full-width">
                                 <mat-label>User Name</mat-label>
                                 <input matInput
                                        aria-label="Select User"
-                                       [matAutocomplete]="auto"
-                                       [formControl]="user"
                                        formControlName="username"
+                                       [matAutocomplete]="auto"
                                        (input)="getUsernames()">
                                 <mat-autocomplete #auto="matAutocomplete">
-                                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user.name">
+                                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user.employeeName">
                                     <img class="example-option-img" aria-hidden height="25">
-                                    <span>{{user.name}}</span> |
-                                    <small>EmpId: {{user.empId}}</small>
+                                    <span>{{user.employeeName}}</span> |
+                                    <small>EmpId: {{user.employeeId}}</small>
                                   </mat-option>
                                 </mat-autocomplete>
                               </mat-form-field>
+                              <div *ngIf="usershowError" class="errorMsg">{{userMessage}}</div>
                   </div>
                   <div fxLayout="column" fxLayout.sm="row" class="set-content">
                     <mat-form-field class="row-width">
@@ -34,6 +34,7 @@
                         matInput
                         placeholder="points"
                         formControlName="points"
+                        value="100"
                         required
                       />
                       </mat-form-field>
@@ -42,12 +43,12 @@
                     <div fxLayout="row" fxLayout.sm="column" class="badge-title set-content">Select Badge</div>
                     <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="5px" class="set-content">
                             <div fxLayout="row">
-                                <button mat-raised-button (click)="getBadgeName('people')"><img class="button-img" src="/assets/people-first.png"></button>
+                                <button mat-raised-button (click)="getBadgeName('People-first')"><img class="button-img" src="/assets/people-first.png"></button>
                             </div>
-                            <div><button mat-raised-button (click)="getBadgeName('bold')"> <img class="button-img" src="/assets/bold.png"></button></div>
-                            <div><button mat-raised-button (click)="getBadgeName('inclusive')"><img class="button-img" src="/assets/inclusive.png"></button></div>
-                            <div><button mat-raised-button (click)="getBadgeName('innovative')"><img class="button-img" src="/assets/innovative.jpeg"></button></div>
-                            <div><button mat-raised-button (click)="getBadgeName('trust')"><img class="button-img" src="/assets/trust.png"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('Bold')"> <img class="button-img" src="/assets/bold.png"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('Inclusive')"><img class="button-img" src="/assets/inclusive.png"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('Innovative')"><img class="button-img" src="/assets/innovative.jpeg"></button></div>
+                            <div><button mat-raised-button (click)="getBadgeName('Trust')"><img class="button-img" src="/assets/trust.png"></button></div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center">
                         <div class="button-text"><p>People-first</p></div>

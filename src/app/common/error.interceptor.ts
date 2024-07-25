@@ -34,7 +34,7 @@ export class ErrorIntercept implements HttpInterceptor {
            }
 
            if(error.status == 400 || error.status == 500) {
-            errorMessage ='Something went wrong. Please try again after sometime';  
+            // errorMessage ='Something went wrong. Please try again after sometime';  
            }
 
            if(error.status != 200 && error.status != 409 && error.status != 500 && error.status != 400 && error.status != 401 && error.status != 0 && error.status != 403) {
@@ -43,10 +43,12 @@ export class ErrorIntercept implements HttpInterceptor {
                     alert(errorMessage)
 
                     this.globals.setglobalSpinner(false);
-                    // console.log("error--------",errorMessage);
                     return throwError(errorMessage);
                 })
             )
+
+            
     }
+   
 }
 

@@ -41,13 +41,14 @@ export class AppComponent implements OnInit{
 
   logout() {
     this.globals.setLogin(false);
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
   goToProfile() {
     this.router.navigate(['/profile']);
   }
-  gotoLanding() {
+  gotoDashboard() {
     this.router.navigate(['/recognition']);
   }
 }
