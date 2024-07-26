@@ -138,7 +138,7 @@ private _filterUsers(value: string): UserName[] {
 
   getProfile() {
 
-    debugger;
+    
     let name: Number = this.myStorageData.employeeId;
 
     console.log("name", name);
@@ -151,12 +151,7 @@ private _filterUsers(value: string): UserName[] {
       localStorage.setItem('employeeData', JSON.stringify(res));
       
       this.globals.setglobalPoints(res.points);
-
-      this.router.navigateByUrl('/route');
-      
     })
-    // this.refreshApplication();
-    // window.location.reload();
     
     this.globals.setglobalSpinner(false);
   }
@@ -183,7 +178,7 @@ private _filterUsers(value: string): UserName[] {
       alert("please fill the form");
       return;
     }
-    debugger;
+    
     this.globals.setglobalSpinner(true);
     if(this.myemployeeData.points > 100) {
 
