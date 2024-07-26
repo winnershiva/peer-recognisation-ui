@@ -17,17 +17,17 @@
             </div>
             <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
               <div fxLayout="column" fxLayout.sm="row">
-                <h3>Paluri Lakshmi Satya Bhavani (7816250)</h3>
+                <h3>{{this.myemployeeData.employeeName}} ({{this.myemployeeData.employeeId}})</h3>
               </div>
             </div>
             <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
               <div fxLayout="column" fxLayout.sm="row">
-                <span>Senior Software Engineer</span>
+                <span>{{this.myemployeeData.designation}}</span>
               </div>
             </div>
             <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
               <div fxLayout="column" fxLayout.sm="row">
-                <h3><a class="email">Satya23.paluri@gmail.com</a></h3>
+                <h3><a class="email">{{this.myemployeeData.email}}</a></h3>
               </div>
             </div>
 
@@ -44,12 +44,12 @@
             <div fxLayout="row">
             <div fxLayoutAlign="start">My Earned Rewards</div>
             <div class="space"></div>
-            <div fxLayoutAlign="end" class="points-earned" matTooltip="click here to redeem" (click)="gotoRedeem()">My Earned Points : 500</div>
+            <div fxLayoutAlign="end" class="points-earned" matTooltip="click here to redeem" (click)="gotoRedeem()">My Earned Points : {{earnedRewards}}</div>
           </div>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="earned-card-content">
-          <div class="accordian" *ngIf="peoplefirstBadge.length > 0">
+          <div class="accordian" *ngIf="peopleflag">
             <mat-accordion class="example-headers-align earned-card-content" multi>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -73,7 +73,7 @@
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-          <div class="accordian" *ngIf="boldBadge.length > 0">
+          <div class="accordian" *ngIf="boldBadgeflag">
             <mat-accordion class="example-headers-align earned-card-content" multi>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -97,7 +97,7 @@
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-          <div class="accordian" *ngIf="inclusiveBadge.length > 0">
+          <div class="accordian" *ngIf="inclusiveflag">
             <mat-accordion class="example-headers-align earned-card-content" multi>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -121,7 +121,7 @@
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-          <div class="accordian" *ngIf="innovativeBadge.length > 0">
+          <div class="accordian" *ngIf="innovativeflag">
             <mat-accordion class="example-headers-align earned-card-content" multi>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -145,7 +145,7 @@
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-          <div class="accordian" *ngIf="trustBadge.length > 0">
+          <div class="accordian" *ngIf="trustflag">
             <mat-accordion class="example-headers-align earned-card-content" multi>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>

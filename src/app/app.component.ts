@@ -13,11 +13,17 @@ export class AppComponent implements OnInit{
   public spinnerLoader: boolean = false;
 
   public loggedinValue: boolean = false;
+  updatedPoints = 1000;
+
+  myemployeeData = JSON.parse(localStorage.getItem('employeeData') || '{}');
+  employeeName: any;
 
   constructor(private router: Router, private globals: Globals, private changeDetRef: ChangeDetectorRef) {
 
   }
   ngOnInit(): void {
+
+    this.employeeName = this.myemployeeData.employeeName;
 
     this.globals.blockSpinner.subscribe(flag => {
 
@@ -37,10 +43,21 @@ export class AppComponent implements OnInit{
       })
 
     })
+
+    this.globals.getPoints.subscribe(Number => {
+
+      this.globals.globalPoints.subscribe(data => {
+         this.updatedPoints = data;
+         this.changeDetRef.detectChanges();
+        
+      })
+
+    })
   }
 
   logout() {
-    this.globals.setLogin(false);
+    this.globals.setLogin(true);
+    this.loggedinValue = false;
     localStorage.clear();
     this.router.navigate(['/login']);
   }

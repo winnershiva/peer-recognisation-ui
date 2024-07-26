@@ -20,7 +20,7 @@ export class LoginService {
   public loginIntoRecognition(payload:any):Observable<any> {
     const httpOptions = { headers: new HttpHeaders(this.headers) };
     const data = payload;
-    return this.http.post(environment.recognitionUrl + "login", data, httpOptions);
+    return this.http.post("https://backend-cb5pj265tq-uc.a.run.app/login", data, httpOptions);
   }
 
 }

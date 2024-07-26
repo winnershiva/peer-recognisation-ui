@@ -10,24 +10,25 @@ export class ProfileService {
 
   public headers: any;
 
-  myStorageData = localStorage.getItem('jwt');
+  myStorageData = JSON.parse(localStorage.getItem('jwt') || '{}');
+
 
   constructor(private http : HttpClient) {
     this.headers = {
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Bearer ' + this.myStorageData
+      'Authorization': 'Bearer ' + this.myStorageData.jwt
     };
   } 
 
   public getEarnedBadges(name:any):Observable<any> {
-
-    return this.http.get(environment.recognitionUrl + "get/earned-recognitions/" + name);
+    const httpOptions = { headers: new HttpHeaders(this.headers) };
+    return this.http.get(environment.recognitionUrl + "get/earned-recognitions/" + name, httpOptions);
   }
 
   public getProfileDetails(name:any):Observable<any> {
     const httpOptions = { headers: new HttpHeaders(this.headers) };
-    return this.http.get(environment.recognitionUrl +'/' + {name}, httpOptions);
+    return this.http.get(environment.recognitionUrl + name, httpOptions);
   }
 
 

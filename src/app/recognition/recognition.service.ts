@@ -29,6 +29,12 @@ export class RecognitionService {
     return this.http.get(environment.recognitionUrl + "search/employee/" + name, httpOptions);
   }
 
+  public getAllEmployeeDetails():Observable<any> {
+
+    const httpOptions = { headers: new HttpHeaders(this.headers) };
+    return this.http.get(environment.recognitionUrl + "getAllEmployeeDetails", httpOptions);
+  }
+
   public submitRecognition(payload:any,giverId: any, receiverId: any):Observable<any> {
     const httpOptions = { headers: new HttpHeaders(this.headers) };
     return this.http.post("http://localhost:9096/api/recognize/" + giverId + '/' + receiverId, payload, httpOptions)

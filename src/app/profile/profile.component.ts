@@ -26,6 +26,15 @@ export interface UserName {
 export class ProfileComponent implements OnInit {
   name: any;
 
+  myStorageData = JSON.parse(localStorage.getItem('jwt') || '{}');
+  myemployeeData = JSON.parse(localStorage.getItem('employeeData') || '{}');
+  earnedRewards: any;
+  innovativeflag: boolean;
+  boldBadgeflag: boolean;
+  trustflag: boolean;
+  inclusiveflag: boolean;
+  peopleflag: boolean;
+
   constructor(private globals: Globals, private profileService: ProfileService, private route : Router) {}
 
   myRewards: { employeeId: number; employeeName: string; email: string; badgesReceived: { giverName: number; receiver: number; badgeName: null; comment: string; badges: { badgeId: number; badgeName: string; }; }[]; };
@@ -39,45 +48,9 @@ export class ProfileComponent implements OnInit {
 
     this.getProfile();
 
-    this.globals.setLogin(true);
+    this.earnedRewards = this.myemployeeData.earned;
 
-    this.myRewards = {
-      "employeeId": 2,
-      "employeeName": "Anusha Korra",
-      "email": "anushakorra@gmail.com",
-      "badgesReceived": [
-          {
-              "giverName": 3,
-              "receiver": 2,
-              "badgeName": null,
-              "comment": "Your unwavering commitment to fostering a welcoming and supportive environment for everyone is truly commendable",
-              "badges": {
-                  "badgeId": 2,
-                  "badgeName": "Inclusive"
-              }
-          },
-          {
-              "giverName": 1,
-              "receiver": 2,
-              "badgeName": null,
-              "comment": "Your unwavering commitment to fostering a welcoming and supportive environment for everyone is truly commendable",
-              "badges": {
-                  "badgeId": 3,
-                  "badgeName": "Bold"
-              }
-          },
-          {
-              "giverName": 5,
-              "receiver": 2,
-              "badgeName": null,
-              "comment": "Your unwavering commitment to fostering a welcoming and supportive environment for everyone is truly commendable",
-              "badges": {
-                  "badgeId": 2,
-                  "badgeName": "Inclusive"
-              }
-          }
-      ]
-  }
+    this.globals.setLogin(true);
 
   this.getMyBadges();
   
@@ -87,14 +60,15 @@ export class ProfileComponent implements OnInit {
  
   getMyBadges() {
 
-    // this.profileService.getEarnedBadges(this.name).subscribe(res => {
+    let name: Number = this.myStorageData.employeeId;
 
+    this.profileService.getEarnedBadges(name).subscribe(res => {
 
-    //   console.log("badgesres", res)
+      this.myRewards = res;
 
-    // })
+      console.log("badgesres", res);
 
-    var badgeObj = [{}];
+      var badgeObj = [{}];
     
     let obj = {badge : "", data : {}};
      this.inclusiveBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Inclusive');
@@ -103,14 +77,46 @@ export class ProfileComponent implements OnInit {
      this.innovativeBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'Innovative');
      this.peoplefirstBadge = this.myRewards.badgesReceived.filter(d => d.badges.badgeName === 'PeopleFirst');
     
+     if(this.innovativeBadge.length > 0) {
+      this.innovativeflag = true;
+     } else {
+      this.innovativeflag = false;
+     }
+     if(this.boldBadge.length > 0) {
+      this.boldBadgeflag = true;
+     } else {
+      this.boldBadgeflag = false;
+     }
+     if(this.trustBadge.length > 0) {
+      this.trustflag = true;
+     } else {
+      this.trustflag = false;
+     }
+     if(this.inclusiveBadge.length > 0) {
+      this.inclusiveflag = true;
+     } else {
+      this.inclusiveflag = false;
+     }
+     if(this.peoplefirstBadge.length > 0) {
+      this.peopleflag = true;
+     } else {
+      this.peopleflag = false;
+     }
+
      console.log("boldBadge", this.boldBadge);
+
+    })
+
+
      
     this.globals.setglobalSpinner(false);
      
   }
 
   getProfile() {
-    let name;
+    let name = this.myStorageData.employeeId;
+    console.log("name", name);
+    
     this.profileService.getProfileDetails(name).subscribe(res => {
 
       console.log("profile info",res);
