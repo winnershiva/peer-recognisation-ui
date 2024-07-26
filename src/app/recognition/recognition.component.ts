@@ -180,7 +180,7 @@ private _filterUsers(value: string): UserName[] {
     }
     
     this.globals.setglobalSpinner(true);
-    if(this.myemployeeData.points > 100) {
+    // if(this.myemployeeData.points > 100) {
 
     let payload = {
       "badgeName" : this.badge,
@@ -205,10 +205,10 @@ private _filterUsers(value: string): UserName[] {
 
     this.getProfile();
 
-  } else {
-    this.globals.setglobalSpinner(false);
-    this.openSnackBar("Sorry you are not able to recognise as your cart value is less than 100", "Ok");
-  }
+  // } else {
+  //   this.globals.setglobalSpinner(false);
+  //   this.openSnackBar("Sorry you are not able to recognise as your cart value is less than 100", "Ok");
+  // }
 
     this.resetForm();
     
@@ -222,5 +222,7 @@ private _filterUsers(value: string): UserName[] {
       this.disablePeople = false;
       this.disableTrust = false;
     this.recognitionForm.reset();
+    this.recognitionForm.get('points')?.patchValue(100);
+    this.recognitionForm.get('points')?.disable();
   }
 }
