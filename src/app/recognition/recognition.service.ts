@@ -37,6 +37,6 @@ export class RecognitionService {
 
   public submitRecognition(payload:any,giverId: any, receiverId: any):Observable<any> {
     const httpOptions = { headers: new HttpHeaders(this.headers) };
-    return this.http.post("http://localhost:9096/api/recognize/" + giverId + '/' + receiverId, payload, httpOptions)
+    return this.http.post(environment.recognitionUrl + 'recognize/' + giverId + '/' + receiverId, payload, httpOptions)
   }
 }
